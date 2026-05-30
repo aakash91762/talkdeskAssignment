@@ -3,11 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Acme Corp | Help Center</title>
+    <!-- Modern, non-system fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Dark Minimalist Base */
+            --bg-dark: #0a0a0f;
+            --surface: #14141c;
+            --surface-hover: #1c1c26;
+            --text-main: #f0f0f5;
+            --text-muted: #8a8a9e;
+            
+            /* Bold, Solid Color Accents */
+            --accent-blue: #00E5FF;
+            --accent-yellow: #FFD700;
+            --accent-coral: #FF3366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            background: transparent;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--text-muted);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .highlight-blue {
+            color: var(--accent-blue);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--text-main);
+            color: var(--bg-dark);
+            padding: 1rem 2.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+        }
+
+        .btn-massive {
+            background: var(--accent-yellow);
+            font-size: 1.5rem;
+            padding: 1.2rem 3rem;
+        }
+
+        /* Geometric Shapes */
+        .shape {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-coral);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            filter: blur(150px);
+            opacity: 0.2;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 500px;
+            background: var(--accent-blue);
+            bottom: -200px;
+            right: 10%;
+            filter: blur(120px);
+            opacity: 0.15;
+        }
+
+        /* Layout Utilities */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        section {
+            padding: 8rem 5%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: var(--surface);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: var(--surface-hover);
+        }
+
+        .border-yellow:hover { border-color: var(--accent-yellow); }
+        .border-blue:hover { border-color: var(--accent-blue); }
+        .border-coral:hover { border-color: var(--accent-coral); }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--surface);
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            border-left: 4px solid var(--accent-coral);
+            background: var(--bg-dark);
+        }
+
+        .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .author strong {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .author span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Footer */
+        .cta-footer {
+            text-align: center;
+            padding: 6rem 5% 6rem; /* Extra bottom padding so it doesn't hide behind the chat widget */
+            background: var(--bg-dark);
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2a2a35;
+            padding-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { min-height: 60vh; margin-top: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        /* JS Animations Setup */
+        .slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <h1>hello1</h1>
-    <!-- Start of Talkdesk Code -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">ACME <span>CORP</span></div>
+        <a href="#cta" class="nav-btn">Get Support</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero slide-up">
+        <div class="hero-content">
+            <div class="badge">System Status: All Operational</div>
+            <h1>Frictionless IT Support. <br><span class="highlight-blue">Zero Wait Time.</span></h1>
+            <p>Resolve access issues, reset domain credentials, and provision software instantly with our intelligent routing architecture.</p>
+            <div class="hero-actions">
+                <a href="#features" class="btn btn-primary">Explore Capabilities</a>
+            </div>
+        </div>
+        <!-- Decorative abstract geometric shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </header>
+
+    <!-- 3-Column Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title slide-up">Enterprise-Grade Automation</h2>
+        <div class="grid-3 slide-up">
+            
+            <div class="feature-card border-yellow">
+                <div class="card-icon yellow">🔑</div>
+                <h3>Automated Password Sync</h3>
+                <p>Secure credential resets executed in seconds. Just provide your 4-digit ID and let our backend verification handle the rest.</p>
+            </div>
+
+            <div class="feature-card border-blue">
+                <div class="card-icon blue">🛠️</div>
+                <h3>Dynamic Access Requests</h3>
+                <p>Sequential data capture for instantaneous software provisioning. Generate internal IT tracking tickets without filling out forms.</p>
+            </div>
+
+            <div class="feature-card border-coral">
+                <div class="card-icon coral">🤝</div>
+                <h3>Seamless Live Handoff</h3>
+                <p>When you need a human, we route you instantly. Full conversational context is passed to our engineering team for zero-repetition support.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- <section class="testimonials">
+        <h2 class="section-title slide-up">Employee Feedback</h2>
+        <div class="grid-2 slide-up">
+            
+            <div class="testimonial-card">
+                <p class="quote">"The new help center slashed our wait times. The automated Slack provisioning ticket was generated instantly using my employee ID."</p>
+                <div class="author">
+                    <strong>Sarah J.</strong>
+                    <span>Marketing Operations</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="quote">"Password resets used to take hours of waiting on hold. Now the system verifies my profile and syncs my domain in under 30 seconds."</p>
+                <div class="author">
+                    <strong>Marcus T.</strong>
+                    <span>Data Analytics</span>
+                </div>
+            </div>
+
+        </div>
+    </section> -->
+
+    <!-- Call to Action Footer -->
+    <footer id="cta" class="cta-footer slide-up">
+        <div class="cta-content">
+            <h2>Ready to resolve your issue?</h2>
+            <p>Our intelligent digital assistant is standing by 24/7 to authenticate your credentials and log your requests.</p>
+            <p style="color: var(--accent-blue); font-weight: 600;">Click the chat icon in the bottom right corner to begin! ↘️</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Acme Corp. Internal Use Only.</p>
+        </div>
+    </footer>
+
+    <!-- JS Animations Script -->
+    <script>
+        // Intersection Observer for clean, modern scroll reveal animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const elementsToAnimate = document.querySelectorAll('.slide-up');
+            
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
      <!-- Start of Talkdesk Code -->
     <script>
       var webchat;
@@ -31,22 +449,6 @@
         script.onload = function() {
           webchat = TalkdeskChatSDK(node, props);
           webchat.init(configs);
-          /*
-           * Send custom data from your website to TalkDesk!
-           * If you would like to do it, you need to remove the following commented code and
-           * modify the webchat.setContextParam parameters to pass in the data you need.
-           */
-           /*function setContext() {
-             webchat.setContextParam({ "var1": "value1", "var2": "value2", "var3": 100 })
-           }
-           // Send data when the chat conversation is initiated
-           webchat.onConversationStart = function() {
-             setContext()
-           }
-           // Send data when the chat widget is open
-           webchat.onOpenWebchat = function() {
-             setContext()
-           }*/
         };
       })(
         window,
@@ -57,6 +459,6 @@
       );
     </script>
 <!-- End of Talkdesk Code -->
-<!-- End of Talkdesk Code -->
+
 </body>
 </html>
